@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./home.css";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion"
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
@@ -13,7 +13,7 @@ const Home = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [status, setStatus] = useState("");
   const [isData, setIsData] = useState(false);
-  const tree = [1, 2, 3];
+  const tree = [1, 2, 3];  
   const navigate = useNavigate();
   let i = 1;
 
@@ -285,7 +285,7 @@ const Home = () => {
                         <img
                           data-tw
                           style={{maxWidth: "none"}}
-                          class="rounded-full h-24 min-w-24 object-cover"
+                          class="rounded-full mg h-24 w-24 object-cover"
                           src={d.image}
                           alt="unsplash image"
                         />

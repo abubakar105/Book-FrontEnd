@@ -64,13 +64,21 @@ const uploadData = (e) => {
           "https://lucky-bathing-suit-cow.cyclic.cloud/book/",
           updatedFormData
         );
+        setData({
+          ...data,
+          name: "",
+          age:""
+        });
+        setImage("")
+        setStatus("")
+        navigator("/")
 
       } catch (error) {
         console.log("Error:", error);
       }
     }
   );
-  navigator("/");
+  // window.location.reload();
 };
 
 const particlesInit = async (main) => {
