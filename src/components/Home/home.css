@@ -4,3 +4,16 @@
     min-width: 100px;
     min-height: 100px;
 }
+@media screen and (max-width: 800px) {
+    table {
+       overflow: scroll;
+    }
+}
+/* Apply these styles for screens less than 800px */
+/* For screens less than 800px */
+@media screen and (max-width: 800px) {
+    .responsive-table {
+      width: 100% !important;
+      overflow-x: auto;
+    }
+  }
