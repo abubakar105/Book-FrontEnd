@@ -9,6 +9,7 @@ import { loadFull } from "tsparticles";
 
 const Update = () => {
     const { id } = useParams();
+    const [loading, setLoading] = useState(false);
     const [data, setData] = useState({ name: '', age: '', image: null, status: '' });
     let navigate = useNavigate();
     useEffect(() => {
@@ -61,6 +62,8 @@ const Update = () => {
   //   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    setLoading(true);
     const formData = {
         name: data.name,
         age: data.age,
@@ -95,6 +98,8 @@ const Update = () => {
 
                         // Update the database with the new data
                         const patchResponse = await axios.patch(`https://lucky-bathing-suit-cow.cyclic.cloud/book/${id}`, updatedFormData);
+                        
+        setLoading(false);
                         navigate('/');
                     } catch (error) {
                         console.log("Error:", error);
@@ -304,19 +309,27 @@ const Update = () => {
                   id="exampleFormControlFile1"
                 />
               </div>
-              <button
-                type="submit"
-                // style={{ background: "blue" }}
-                class="btn btn-primary  bg-gray-700 hover:bg-gray-900 active:bg-gray-900"
-              >
-                Submit
-              </button>
+              {loading ? (
+                  // Display the spinner when loading is true
+                  <div className="spinner-border" role="status">
+                    <span className="sr-only">Loading...</span>
+                  </div>
+                ) : (
+                  <button
+                  type="submit"
+                  // style={{ background: "blue" }}
+                  class="btn btn-primary  bg-gray-700 hover:bg-gray-900 active:bg-gray-900"
+                >
+                  Submit
+                </button>
+                )}
+              
             </form>
           </div>
         </div>
       </div>
     </motion.div>
-        // <div>
+        {/* // <div>
         //     <div className="container">
         //         <div className="row">
         //             <div className="col-md-6 offset-md-3">
@@ -347,7 +360,7 @@ const Update = () => {
         //         </div>
         //     </div>
         // </div>
-        
+         */}
       </>
     );
 };

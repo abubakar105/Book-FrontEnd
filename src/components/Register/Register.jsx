@@ -15,6 +15,7 @@ const Register = () => {
   const [status, setStatus] = useState("");
   const navigator = useNavigate();
   const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(false);
   const changeStatus = (e) => {
     setStatus(e.target.value);
   };
@@ -33,7 +34,7 @@ const uploadData = (e) => {
     alert("Please Complete The Form CareFully!");
     return;
   }
-  
+  setLoading(true);
   const formData={
     name:data.name,
     age:data.age,
@@ -64,6 +65,7 @@ const uploadData = (e) => {
           "https://lucky-bathing-suit-cow.cyclic.cloud/book/",
           updatedFormData
         );
+        setLoading(false);
         setData({
           ...data,
           name: "",
@@ -285,13 +287,21 @@ const particlesInit = async (main) => {
                   id="exampleFormControlFile1"
                 />
               </div>
-              <button
-                type="submit"
-                // style={{ background: "blue" }}
-                class="btn btn-primary  bg-gray-700 hover:bg-gray-900 active:bg-gray-900"
-              >
-                Submit
-              </button>
+              {loading ? (
+                  // Display the spinner when loading is true
+                  <div className="spinner-border" role="status">
+                    <span className="sr-only">Loading...</span>
+                  </div>
+                ) : (
+                  <button
+                  type="submit"
+                  // style={{ background: "blue" }}
+                  class="btn btn-primary  bg-gray-700 hover:bg-gray-900 active:bg-gray-900"
+                >
+                  Submit
+                </button>
+                )}
+              
             </form>
           </div>
         </div>
